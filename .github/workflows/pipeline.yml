@@ -11,7 +11,7 @@ on:
 
 jobs:
   test: 
-    runs-on: ubuntu_latest
+    runs-on: buntu-latest
     
     steps:
         - name: Git Code
@@ -29,7 +29,7 @@ jobs:
           run:  npm run build
           
         - name: Deploy
-          run: echo "deploying....."
+          run: echo "Deploying....."
 
         
 
