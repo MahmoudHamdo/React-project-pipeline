@@ -28,7 +28,7 @@ jobs:
           run:  npm test
           
 
-  deploy:   
+  build:   
     needs: test 
     runs-on: ubuntu-latest          
             
@@ -51,11 +51,29 @@ jobs:
          - name: Upload Artifacts
            uses: actions/upload-artifact@v4
            with:
-              name: dist-folder
+              name: dist-files
               path: dist
                   
+    
+
+  deploy:   
+    needs: build 
+    runs-on: ubuntu-latest          
+            
+    steps:    
+         - name: Git Code
+           uses: actions/checkout@v3
+        
+         - name: Get Artifacts
+           uses: actions/download-artifact@v3
+           with:
+              name: dist-files
+
+         - name: List Output Contents 
+           run:  ls
+                  
          - name: Deploy
-           run: echo "Deploying....."
+           run:  echo "Deploying....."
 
         
 
